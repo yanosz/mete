@@ -1,0 +1,14 @@
+# Cf http://www.stderr.nl/Blog/Software/Rails/RailsSocketActivation.html
+# Use webrick (single process / single thread), since rewriting and
+# reloading wireguard-configurations concurrently is bad per se ;-).
+
+[Service]
+#Add your secret key base here
+#Environment=SECRET_KEY_BASE=
+
+WorkingDirectory=/home/mete/mete
+ExecStart=/usr/bin/rackup -s puma -o 127.0.0.1 -p 8080 -E production
+User=mete
+
+[Install]
+WantedBy=multi-user.target
